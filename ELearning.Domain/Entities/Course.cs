@@ -1,6 +1,6 @@
 ﻿namespace ELearning.Domain.Entities
 {
-    public class Course
+    public class Course : MongoDocument
     {
         public string Title { get; set; }
 

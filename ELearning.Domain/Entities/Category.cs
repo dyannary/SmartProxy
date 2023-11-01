@@ -1,6 +1,4 @@
-﻿using System.Collections.Specialized;
-
-namespace ELearning.Domain.Entities
+﻿namespace ELearning.Domain.Entities
 {
     public class Category
     {

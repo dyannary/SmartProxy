@@ -1,3 +1,8 @@
+using ELearning.Domain.Entities;
+using ELearning.Domain.Repositories;
+using ELearning.Domain.Settings;
+using Microsoft.Extensions.Options;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +11,13 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDbSettings"));
+
+builder.Services.AddSingleton<IMongoDbSettings>(provider =>
+    provider.GetRequiredService<IOptions<MongoDbSettings>>().Value);
+
+builder.Services.AddScoped<IMongoRepository<Course>, MongoRepository<Course>>();
 
 var app = builder.Build();
 
