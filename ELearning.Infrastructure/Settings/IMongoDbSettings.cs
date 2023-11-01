@@ -1,4 +1,4 @@
-﻿namespace ELearning.Domain.Settings
+﻿namespace ELearning.Infrastructure.Settings
 {
     public interface IMongoDbSettings
     {

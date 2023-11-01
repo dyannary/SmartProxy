@@ -1,9 +1,9 @@
 ﻿using ELearning.Domain.Entities;
-using ELearning.Domain.Settings;
+using ELearning.Infrastructure.Settings;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace ELearning.Domain.Repositories
+namespace ELearning.Infrastructure.Repositories
 {
     public class MongoRepository<T> : IMongoRepository<T> where T : MongoDocument
     {

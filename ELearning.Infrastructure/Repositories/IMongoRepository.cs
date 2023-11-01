@@ -1,6 +1,6 @@
 ﻿using ELearning.Domain.Entities;
 
-namespace ELearning.Domain.Repositories
+namespace ELearning.Infrastructure.Repositories
 {
     public interface IMongoRepository<T> where T: MongoDocument
     {

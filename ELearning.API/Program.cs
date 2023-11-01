@@ -1,6 +1,6 @@
 using ELearning.Domain.Entities;
-using ELearning.Domain.Repositories;
-using ELearning.Domain.Settings;
+using ELearning.Infrastructure.Repositories;
+using ELearning.Infrastructure.Settings;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);

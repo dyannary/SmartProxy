@@ -1,8 +1,6 @@
-﻿using ELearning.Application.DTOs;
-using ELearning.Domain.Entities;
-using ELearning.Domain.Repositories;
+﻿using ELearning.Domain.Entities;
+using ELearning.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Driver.Core.Misc;
 
 namespace ELearning.API.Controllers
 {

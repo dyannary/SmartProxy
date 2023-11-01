@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ELearning.Application\ELearning.Application.csproj" />
     <ProjectReference Include="..\ELearning.Domain\ELearning.Domain.csproj" />
+    <ProjectReference Include="..\ELearning.Infrastructure\ELearning.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
