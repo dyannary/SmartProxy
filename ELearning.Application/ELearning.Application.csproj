@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Courses\Commands\" />
     <Folder Include="Courses\Queries\" />
   </ItemGroup>
 
