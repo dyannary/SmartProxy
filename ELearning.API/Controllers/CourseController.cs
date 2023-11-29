@@ -8,16 +8,18 @@ namespace ELearning.API.Controllers
     [ApiController]
     public class CourseController : Controller
     {
-        private readonly IMongoRepository<Course> _courseRepository;
-        public CourseController(IMongoRepository<Course> courseRepository)
+        private readonly IDestinationRepository<Course> _destinationRepository;
+        private readonly ISourceRepository<Course> _sourceRepository;
+        public CourseController(IDestinationRepository<Course> destinationRepository, ISourceRepository<Course> sourceRepository)
         {
-            _courseRepository = courseRepository;
+            _destinationRepository = destinationRepository;
+            _sourceRepository = sourceRepository;
         }
 
         [HttpGet]
         public List<Course> GetAllCourses()
         {
-            var records = _courseRepository.GetAllRecords();
+            var records = _destinationRepository.GetAllRecords();
 
             return records;
         }
@@ -25,7 +27,7 @@ namespace ELearning.API.Controllers
         [HttpGet("{id}")]
         public Course GetCourseById(Guid id)
         {
-            var result = _courseRepository.GetRecordById(id);
+            var result = _destinationRepository.GetRecordById(id);
 
             return result;
         }
@@ -36,7 +38,7 @@ namespace ELearning.API.Controllers
             //de mutat intr-un serviciu aparte
             course.LastChangedTime = DateTime.UtcNow;
 
-            _courseRepository.InsertRecord(course);
+            _sourceRepository.InsertRecord(course);
 
             return Ok("Created");
         }
@@ -51,7 +53,7 @@ namespace ELearning.API.Controllers
 
             course.LastChangedTime = DateTime.UtcNow;
 
-            _courseRepository.UpsertRecord(course);
+            _sourceRepository.UpsertRecord(course);
 
             return Ok(course);
         }
@@ -59,14 +61,14 @@ namespace ELearning.API.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteCourse(Guid id)
         {
-            var course = _courseRepository.GetRecordById(id);
+            var course = _destinationRepository.GetRecordById(id);
 
             if (course == null)
             {
                 return BadRequest("Course does not exist");
             }
 
-            _courseRepository.DeleteRecord(id);
+            _sourceRepository.DeleteRecord(id);
 
             return Ok("Deleted " + id);
         }
