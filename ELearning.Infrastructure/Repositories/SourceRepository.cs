@@ -10,9 +10,9 @@ namespace ELearning.Infrastructure.Repositories
         private readonly IMongoDatabase _database;
         private readonly IMongoCollection<T> _collection;
 
-        public SourceRepository(IMongoDbSettings dbSettings)
+        public SourceRepository(ISourceSettings sourceSettings)
         {
-            _database = new MongoClient(dbSettings.ConnectionString).GetDatabase(dbSettings.DatabaseName);
+            _database = new MongoClient(sourceSettings.SourceConnectionString).GetDatabase(sourceSettings.SourceDatabaseName);
 
             string tableName = typeof(T).Name.ToLower();
 

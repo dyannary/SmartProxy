@@ -10,9 +10,9 @@ namespace ELearning.Infrastructure.Repositories
         private readonly IMongoDatabase _database;
         private readonly IMongoCollection<T> _collection;
 
-        public DestinationRepository(IMongoDbSettings dbSettings)
+        public DestinationRepository(IDestDbSettings dbSettings)
         {
-            _database = new MongoClient(dbSettings.ConnectionString).GetDatabase(dbSettings.DatabaseName);
+            _database = new MongoClient(dbSettings.DestConnectionString).GetDatabase(dbSettings.DestDatabaseName);
 
             string tableName = typeof(T).Name.ToLower();
 
@@ -32,27 +32,5 @@ namespace ELearning.Infrastructure.Repositories
 
             return record;
         }
-
-
-        //public void DeleteRecord(Guid id)
-        //{
-        //    _collection.DeleteOne(doc => doc.Id == id);
-        //}
-
-        //public T InsertRecord(T record)
-        //{
-        //    _collection.InsertOne(record);
-
-        //    return record;
-        //}
-
-        //public void UpsertRecord(T record)
-        //{
-        //    _collection.ReplaceOne(doc => doc.Id == record.Id, record,
-        //        new ReplaceOptions()
-        //        {
-        //            IsUpsert = true
-        //        });
-        //}
     }
 }

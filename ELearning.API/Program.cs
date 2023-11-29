@@ -12,12 +12,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("SourceDbSettings"));
+builder.Services.Configure<SourceSettings>(builder.Configuration.GetSection("SourceDbSettings"));
 
-builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("DestinationDbSettings"));
+builder.Services.Configure<DestDbSettings>(builder.Configuration.GetSection("DestinationDbSettings"));
 
-builder.Services.AddSingleton<IMongoDbSettings>(provider =>
-    provider.GetRequiredService<IOptions<MongoDbSettings>>().Value);
+builder.Services.AddSingleton<IDestDbSettings>(provider =>
+    provider.GetRequiredService<IOptions<DestDbSettings>>().Value);
+
+builder.Services.AddSingleton<ISourceSettings>(provider =>
+    provider.GetRequiredService<IOptions<SourceSettings>>().Value);
+
 
 builder.Services.AddScoped<ISourceRepository<Course>, SourceRepository<Course>>();
 
