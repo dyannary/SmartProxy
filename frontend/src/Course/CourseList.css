@@ -1,0 +1,91 @@
+.course-header {
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: left;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: #000000;
+    margin-left: 100px;
+    display: inline;
+}
+
+img {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 20px;
+    width: 40px;
+    height: 40px;
+}
+.course-header:after {
+    content: "";
+    display: inline-block;
+    width: 20px;
+}
+
+.course-list{
+    list-style-type: none;
+}
+
+.update-course,
+.add-course {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    float: left;
+    margin-bottom: 20px;
+}
+
+.add-course textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+    display: block; /* Display each input on a new line */
+    max-height: 100px; /* Adjust the max height as needed */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+.course-item {
+    background-color: #f2f2f2;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #333;
+    text-align: left;
+}
+.author {
+    margin-left: 40px;
+}
+
+.add-button {
+    background-color: #00ff00;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.update-button{
+    background-color: #ffff00;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.delete-button{
+    background-color: #ff0000;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.delete-button:hover,
+.update-button:hover,
+.add-button:hover {
+    background-color: #232121;
+    color: white;
+}
