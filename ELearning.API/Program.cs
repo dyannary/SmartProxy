@@ -12,12 +12,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDbSettings"));
+builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("SourceDbSettings"));
+
+builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("DestinationDbSettings"));
 
 builder.Services.AddSingleton<IMongoDbSettings>(provider =>
     provider.GetRequiredService<IOptions<MongoDbSettings>>().Value);
 
-builder.Services.AddScoped<IMongoRepository<Course>, MongoRepository<Course>>();
+builder.Services.AddScoped<ISourceRepository<Course>, SourceRepository<Course>>();
+
+builder.Services.AddScoped<IDestinationRepository<Course>, DestinationRepository<Course>>();
 
 var app = builder.Build();
 
@@ -31,6 +35,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseRouting();
 
 app.MapControllers();
 

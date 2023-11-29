@@ -5,12 +5,12 @@ using MongoDB.Driver;
 
 namespace ELearning.Infrastructure.Repositories
 {
-    public class MongoRepository<T> : IMongoRepository<T> where T : MongoDocument
+    public class SourceRepository<T> : ISourceRepository<T> where T : MongoDocument
     {
         private readonly IMongoDatabase _database;
         private readonly IMongoCollection<T> _collection;
 
-        public MongoRepository(IMongoDbSettings dbSettings)
+        public SourceRepository(IMongoDbSettings dbSettings)
         {
             _database = new MongoClient(dbSettings.ConnectionString).GetDatabase(dbSettings.DatabaseName);
 
@@ -18,21 +18,6 @@ namespace ELearning.Infrastructure.Repositories
 
             _collection = _database.GetCollection<T>(tableName);
         }
-
-        public List<T> GetAllRecords()
-        {
-            var records = _collection.Find(new BsonDocument()).ToList();
-
-            return records;
-        }
-
-        public T GetRecordById(Guid id)
-        {
-            var record = _collection.Find(doc => doc.Id == id).FirstOrDefault();
-
-            return record;
-        }
-
 
         public void DeleteRecord(Guid id)
         {
